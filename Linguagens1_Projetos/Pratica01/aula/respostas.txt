@@ -22,7 +22,6 @@ Elas são guardadas em uma "lista" de chave-valor.
 Todos os valores das variáveis de ambiente são strings não nulas.
 
 
-
 6. Se for no seu ambiente, sim.
 
 7. Entra em variaveis de ambiente  em propriedades do sistema e clica em
