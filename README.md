@@ -2,4 +2,3 @@
 
 Repositório para a disciplina Linguagens 1.
 
-Truth
