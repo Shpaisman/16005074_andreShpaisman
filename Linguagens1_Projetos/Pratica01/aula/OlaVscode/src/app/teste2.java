@@ -2,7 +2,7 @@ package app;
 
 import java.util.Scanner;
 
-public class App {
+public class teste2 {
     static Scanner sc = new Scanner(System.in);
     public static void main(String[] args) throws Exception {
         double n1,n2;
