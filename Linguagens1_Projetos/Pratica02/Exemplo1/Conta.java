@@ -1,37 +1,35 @@
-package Exemplo1;
+package app;
 
-public class Conta{
-    //atributos
+/**
+ * Conta
+ */
+public class Conta {
     public int numero;
-    public String titular, cpf;
+    public Cliente cliente = new Cliente();
     public double saldo;
-    //MÉTODOS
     
-    boolean sacar(double valor){
-        if (this.saldo<valor){
+    boolean sacar(double valor) {
+        if (this.saldo < valor) {
             return false;
-        }
-        else{
+        } else {
             this.saldo -= valor;
             return true;
         }
     }
-    
-    boolean depositar(double valor){
+    void depositar(double valor) {
         this.saldo += valor;
-        return true;
-    }
 
-    void visualizarSaldo(){
-        System.out.println("Saldo: " + this.saldo);
     }
-    
-    boolean transferirDinheiro(Conta destino, double valor){
-    if (sacar(valor)){
-        destino.depositar(valor);
-        return true;
-    }else
-        return false;        
-    }}
-
-    
+    boolean transferirDinheiro(double valor, Conta conta) {
+        System.out.println(this.cliente.nome + " Transferindo R$ " + Double.toString(valor).replace('.', ',') + " para " + conta.cliente.nome);
+        if (sacar(valor)) {
+            conta.depositar(valor);
+            return true;
+        } else {                        
+            return false;
+        }
+    }
+    void visualizarSaldo() {
+        System.out.println(this.cliente.nome + " Saldo: " + this.saldo);
+    }
+}
