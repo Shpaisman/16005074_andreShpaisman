@@ -19,7 +19,7 @@ public class App {
     decisao = sc.nextInt();
     
     if(decisao == 1){
-        System.out.println("normie");
+        System.out.println("modo casual selecionado. Suas opcoes sao pedra, papel e tesoura.");
         p1.criarNomeJogador();
         p2.criarNomeJogador();
         Jogo partida = new Jogo();
