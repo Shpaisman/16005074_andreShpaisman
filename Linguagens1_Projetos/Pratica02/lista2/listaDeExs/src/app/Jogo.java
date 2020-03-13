@@ -30,8 +30,11 @@ public class Jogo {
         else if(p1.jogada.equalsIgnoreCase(tesoura) && p2.jogada.equalsIgnoreCase(papel)) {
             System.out.println(p1.nome + " Venceu!");
         }
-        else
+        else if(p1.jogada.equalsIgnoreCase(p2.jogada)){
             System.out.println("empate");
+        }
+        else
+            System.out.println("jogada invalida");
 
     }
    
