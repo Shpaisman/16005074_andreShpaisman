@@ -1,5 +1,5 @@
 package app;
-
+// Andre Shpaisman 16.00507-4
 public class Usuario {
     private String nick;
     private String password;
