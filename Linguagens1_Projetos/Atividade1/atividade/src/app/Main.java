@@ -1,3 +1,5 @@
+//Andre Shpaisman 16.00507-4
+
 package app;
 import java.util.Scanner;
 
@@ -40,9 +42,9 @@ public class Main {
         Transacoes.transferir(conta3, conta2, valor2);
 
         System.out.println("Estado Final: ");
-        System.out.println("Nome do Usuario: " + user.getNome() + " -- Saldo: " + conta.getSaldo() + " ID: " + conta.getIdConta());
-        System.out.println("Nome do Usuario: " + user2.getNome() + " -- Saldo: " + conta2.getSaldo() + " ID: " + conta2.getIdConta());
-        System.out.println("Nome do Usuario: " + user3.getNome() + " -- Saldo: " + conta3.getSaldo() + " ID: " + conta3.getIdConta());
+        System.out.println("Nome do Usuario: " + user.getNome() + " -- Saldo: " + conta.getSaldo());
+        System.out.println("Nome do Usuario: " + user2.getNome() + " -- Saldo: " + conta2.getSaldo());
+        System.out.println("Nome do Usuario: " + user3.getNome() + " -- Saldo: " + conta3.getSaldo());
         
         
         sc.close();
