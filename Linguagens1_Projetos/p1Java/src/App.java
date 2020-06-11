@@ -1,5 +1,10 @@
 import java.util.Scanner;
 
+import controller.Orders;
+import enums.Estado;
+import enums.FormaPgto;
+import models.Pedido;
+
 public class App {
 
     /**
@@ -15,6 +20,8 @@ public class App {
      */
     public static void main(String[] args) throws Exception {
         Boolean run = true;
+        Orders orders = new Orders();
+        Pedido pedido;
         while (run) {
             System.out.println("Pizzaria o Rato que Ri:");
             System.out.println("1 - Nova venda");
@@ -25,10 +32,11 @@ public class App {
 
             switch (menu) {
                 case 1:
-
+                    Pedido p = novoPedido();
+                    orders.addListaPedidos(p);
                     break;
                 case 2:
-
+                    orders.ApresentarPedidos();
                     break;
                 case 3:
 
@@ -44,4 +52,15 @@ public class App {
             System.out.println();
         }
     }
+
+    public static Pedido novoPedido() {
+        System.out.println("DESCRICAO");
+        String descricao = sc.next();
+        System.out.println("VALOR");
+        double valor = sc.nextInt();
+        
+        return new Pedido(descricao, valor);
+
+    }
+   
 }
