@@ -21,7 +21,6 @@ public class App {
     public static void main(String[] args) throws Exception {
         Boolean run = true;
         Orders orders = new Orders();
-        Pedido pedido;
         while (run) {
             System.out.println("Pizzaria o Rato que Ri:");
             System.out.println("1 - Nova venda");
@@ -53,13 +52,17 @@ public class App {
         }
     }
 
+
+
     public static Pedido novoPedido() {
         System.out.println("DESCRICAO");
         String descricao = sc.next();
         System.out.println("VALOR");
         double valor = sc.nextInt();
-    
-        return new Pedido(descricao, valor);
+        Orders orders = new Orders();
+        orders.definirFormaDePgto();
+        
+        return new Pedido(descricao, valor, orders.getfPgto());
 
     }
    

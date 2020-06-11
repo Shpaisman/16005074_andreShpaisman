@@ -2,6 +2,7 @@ package models;
 
 import java.util.Random;
 
+import controller.Orders;
 import enums.FormaPgto;
 import interfaces.Apresentar;
 
@@ -12,20 +13,22 @@ import interfaces.Apresentar;
 public class Pedido implements Apresentar{     
     String descricao;
     double valor;
-    //FormaPgto formaPgto;
+    FormaPgto formaPgto;
     //Estado estado;
 
-    public Pedido(String descricao, double valor){
+    public Pedido(String descricao, double valor, FormaPgto formaPgto){
         this.descricao = descricao;
         this.valor = valor;
-       
+        this.formaPgto = formaPgto;
     }
     
+    public void escolherFormaDePagamento(){
 
+    }
 
     @Override
     public void Apresentacao() {
-        System.out.println("id: "  +" Descricao: " + descricao + " Valor: " + valor);
+        System.out.println("id: "  +" Descricao: " + descricao + " Valor: " + valor + " Forma de Pgto: " + formaPgto);
     }
 
 }
