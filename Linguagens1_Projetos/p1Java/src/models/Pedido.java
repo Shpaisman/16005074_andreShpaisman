@@ -31,7 +31,7 @@ public class Pedido implements Apresentar{
    
     @Override
     public void Apresentacao() {
-        System.out.println("id: " + idGerado +" Descricao: " + descricao + " Valor: " + valor + " Forma de Pgto: " + formaPgto);
+        System.out.println("id: " + idGerado +" - Descricao: " + descricao + " - Valor: " + valor + " - Forma de Pgto: " + formaPgto);
     }
 
 

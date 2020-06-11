@@ -1,5 +1,6 @@
 import java.util.Scanner;
 
+import controller.AuthCheck;
 import controller.Orders;
 import enums.Estado;
 import enums.FormaPgto;
@@ -21,6 +22,8 @@ public class App {
     public static void main(String[] args) throws Exception {
         Boolean run = true;
         Orders orders = new Orders();
+        AuthCheck aCheck = new AuthCheck();
+
         while (run) {
             System.out.println("Pizzaria o Rato que Ri:");
             System.out.println("1 - Nova venda");
@@ -31,8 +34,14 @@ public class App {
 
             switch (menu) {
                 case 1:
-                    Pedido p = novoPedido();
-                    orders.addListaPedidos(p);
+                    System.out.println("Insira sua senha: ");
+                    String senha = sc.next();
+                    if(aCheck.conferirSenha(senha) == true){
+                        Pedido p = novoPedido();
+                        orders.addListaPedidos(p);
+                    }
+                    else
+                        System.out.println("Senha incorreta");
                     break;
                 case 2:
                     orders.ApresentarPedidos();
