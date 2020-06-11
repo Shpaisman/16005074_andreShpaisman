@@ -8,6 +8,11 @@ public class App {
      */
     final static Scanner sc = new Scanner(System.in);
 
+    
+    /** 
+     * @param args
+     * @throws Exception
+     */
     public static void main(String[] args) throws Exception {
         Boolean run = true;
         while (run) {
