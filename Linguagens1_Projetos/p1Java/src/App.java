@@ -14,8 +14,7 @@ public class App {
      */
     final static Scanner sc = new Scanner(System.in);
 
-    
-    /** 
+    /**
      * @param args
      * @throws Exception
      */
@@ -31,16 +30,15 @@ public class App {
             System.out.println("3 - Alterar Pedidos");
             System.out.println("0 - Sair");
             int menu = sc.nextInt();
-
+            String senha;
             switch (menu) {
                 case 1:
                     System.out.println("Insira sua senha: ");
-                    String senha = sc.next();
-                    if(aCheck.conferirSenha(senha) == true){
+                    senha = sc.next();
+                    if (aCheck.conferirSenha(senha) == true) {
                         Pedido p = novoPedido();
                         orders.addListaPedidos(p);
-                    }
-                    else
+                    } else
                         System.out.println("Senha incorreta");
                     break;
                 case 2:
@@ -61,19 +59,17 @@ public class App {
         }
     }
 
-
-
     public static Pedido novoPedido() {
-        
+
         System.out.println("DESCRICAO");
         String descricao = sc.next();
         System.out.println("VALOR");
         double valor = sc.nextInt();
         Orders orders = new Orders();
         orders.definirFormaDePgto();
-        
-        return new Pedido("IMPLEMENTAR ID " ,descricao, valor, orders.getfPgto());
+
+        return new Pedido("IMPLEMENTAR ID ", descricao, valor, orders.getfPgto());
 
     }
-   
+
 }
