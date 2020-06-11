@@ -58,7 +58,7 @@ public class App {
         String descricao = sc.next();
         System.out.println("VALOR");
         double valor = sc.nextInt();
-        
+    
         return new Pedido(descricao, valor);
 
     }

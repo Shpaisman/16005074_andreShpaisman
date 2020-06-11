@@ -1,5 +1,13 @@
 package enums;
 
 public enum FormaPgto {
-    DINHEIRO, DEBITO, CREDITO, VALE_ALIMENTACAO, VALE_REFEICAO
+    DINHEIRO(1), DEBITO(2);//, CREDITO(3), VALE_ALIMENTACAO(4), VALE_REFEICAO(5);
+
+    private final int valor;
+    FormaPgto(int formaDePgto){
+        valor = formaDePgto;
+    }
+    public int getValor() {
+        return valor;
+    }
 }
