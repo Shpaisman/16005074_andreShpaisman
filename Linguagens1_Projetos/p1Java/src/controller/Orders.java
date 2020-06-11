@@ -15,10 +15,6 @@ public class Orders {
         this.listaPedidos.add(pedido);
     }
 
-    public ArrayList<Pedido> getListaPedidos() {
-        return listaPedidos;
-    }
-
     public void ApresentarPedidos() {
         for (Pedido pedido : listaPedidos) {
             pedido.Apresentacao();
@@ -59,4 +55,8 @@ public class Orders {
     public FormaPgto getfPgto() {
         return fPgto;
     }
+
+    
+
+    
 }

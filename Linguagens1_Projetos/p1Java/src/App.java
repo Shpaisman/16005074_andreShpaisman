@@ -55,6 +55,7 @@ public class App {
 
 
     public static Pedido novoPedido() {
+        
         System.out.println("DESCRICAO");
         String descricao = sc.next();
         System.out.println("VALOR");
@@ -62,7 +63,7 @@ public class App {
         Orders orders = new Orders();
         orders.definirFormaDePgto();
         
-        return new Pedido(descricao, valor, orders.getfPgto());
+        return new Pedido("IMPLEMENTAR ID " ,descricao, valor, orders.getfPgto());
 
     }
    
