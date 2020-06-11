@@ -30,6 +30,9 @@ public class Orders {
         System.out.println("Defina a forma de pagamento: ");
         System.out.println("1 - Dinheiro");
         System.out.println("2 - Débito");
+        System.out.println("3 - Crédito");
+        System.out.println("4 - Vale alimentação");
+        System.out.println("5 - Vale Refeição");
         codigo = sc.nextInt();
 
         switch (codigo) {
@@ -38,10 +41,21 @@ public class Orders {
                 break;
             case 2:
             fPgto = FormaPgto.DEBITO;
+                break;
+            case 3:
+            fPgto = FormaPgto.CREDITO;
+                break;
+            case 4:
+            fPgto = FormaPgto.VALE_ALIMENTACAO;
+                    break;    
+            case 5:
+            fPgto = FormaPgto.VALE_REFEICAO;
+                break;
             default:
                 break;
         }
     }
+    
     public FormaPgto getfPgto() {
         return fPgto;
     }
