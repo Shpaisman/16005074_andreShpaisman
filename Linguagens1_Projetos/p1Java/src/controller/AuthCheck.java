@@ -8,6 +8,11 @@ import models.Usuarios;
 public class AuthCheck implements AuthInterface {
     Scanner sc = new Scanner(System.in);
 
+    
+    /** 
+     * @param senha
+     * @return boolean
+     */
     public boolean conferirSenha(String senha) {
         Usuarios user = new Usuarios();
         

@@ -25,6 +25,10 @@ public class Pedido implements Apresentar{
         this.estado = estado;
     }
 
+    
+    /** 
+     * @return String
+     */
     private String geradorId(){
         Random random = new Random();
         String idGerado = "";
@@ -33,15 +37,27 @@ public class Pedido implements Apresentar{
         return idGerado;
     }
 
+    
+    /** 
+     * @return Estado
+     */
     private Estado getEstado() {
         return estado;
     }
 
+    
+    /** 
+     * @return String
+     */
     public String getIdGerado() {
         return idGerado;
     }
-    
 
+
+    
+    /** 
+     * @param estado
+     */
     public void setEstado(Estado estado) {
         this.estado = estado;
     }

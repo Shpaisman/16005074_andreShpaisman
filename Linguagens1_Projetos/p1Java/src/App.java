@@ -3,7 +3,6 @@ import java.util.Scanner;
 import controller.AuthCheck;
 import controller.Orders;
 import enums.Estado;
-import enums.FormaPgto;
 import models.Pedido;
 
 public class App {
@@ -48,7 +47,7 @@ public class App {
                     orders.ApresentarPedidos();
                     System.out.println("Insira o id do produto: ");
                     String id = sc.next();
-                    orders.alterarEstado(id);
+                    orders.alterarEstadoDoPedido(id);
                     break;
                 case 0:
                     run = false;
@@ -59,6 +58,10 @@ public class App {
         }
     }
 
+    
+    /** 
+     * @return Pedido
+     */
     public static Pedido novoPedido() {
         System.out.println("DESCRICAO");
         String descricao = sc.next();

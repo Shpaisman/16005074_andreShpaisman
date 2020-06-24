@@ -14,6 +14,10 @@ public class Orders {
     private FormaPgto fPgto;
     
 
+    
+    /** 
+     * @param pedido
+     */
     public void addListaPedidos(Pedido pedido) {
         this.listaPedidos.add(pedido);
     }
@@ -55,11 +59,19 @@ public class Orders {
         }
     }
     
+    
+    /** 
+     * @return FormaPgto
+     */
     public FormaPgto getfPgto() {
         return fPgto;
     }
   
-    public void alterarEstado(String id){
+    
+    /** 
+     * @param id
+     */
+    public void alterarEstadoDoPedido(String id){
         for(Pedido pedido : listaPedidos){
             if(id.equals(pedido.getIdGerado())){
                 int codigo;
@@ -89,7 +101,9 @@ public class Orders {
                     default:
                         break;
                 }
+                
             }
+            
         }
     }
 }
