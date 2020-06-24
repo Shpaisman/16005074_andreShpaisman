@@ -13,7 +13,9 @@ public class AuthCheck implements AuthInterface {
         
         if (senha.equals(user.getSenha())) {
             return true;
+
         } else
+            System.out.println("Senha incorreta");
             return false;
 
     }

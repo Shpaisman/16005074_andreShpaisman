@@ -39,13 +39,16 @@ public class App {
                         Pedido p = novoPedido();
                         orders.addListaPedidos(p);
                     } else
-                        System.out.println("Senha incorreta");
+                    
                     break;
                 case 2:
                     orders.ApresentarPedidos();
                     break;
                 case 3:
-
+                    orders.ApresentarPedidos();
+                    System.out.println("Insira o id do produto: ");
+                    String id = sc.next();
+                    orders.alterarEstado(id);
                     break;
                 case 0:
                     run = false;
@@ -57,7 +60,6 @@ public class App {
     }
 
     public static Pedido novoPedido() {
-
         System.out.println("DESCRICAO");
         String descricao = sc.next();
         System.out.println("VALOR");
@@ -65,8 +67,9 @@ public class App {
         Orders orders = new Orders();
         orders.definirFormaDePgto();
 
-        return new Pedido("IMPLEMENTAR ID ", descricao, valor, orders.getfPgto());
+        return new Pedido(descricao, valor, orders.getfPgto(), Estado.REALIZADO);
 
     }
 
+   
 }
