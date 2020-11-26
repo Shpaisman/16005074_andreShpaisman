@@ -88,4 +88,29 @@ public class PersonagensDAO {
 
     }
 
+    public boolean updatePersonagemById(Personagem personagem){
+        try {
+            Statement comandoSql = connection.createStatement();
+            comandoSql.executeUpdate(Constants.updatePersonagemById(Constants.TABELA_PERSONAGENS, personagem));
+            connection.commit();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+        return true;
+    }
+    public boolean deletePersonagemById(int id){
+        try {
+            Statement comandoSql = connection.createStatement();
+            comandoSql.executeUpdate(Constants.deletePersonagemById(Constants.TABELA_PERSONAGENS, id));
+            connection.commit();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+        return true;
+    }
+
 }

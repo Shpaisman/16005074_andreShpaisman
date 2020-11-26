@@ -21,13 +21,13 @@ public class Constants {
     public static final String selectId(String table, int id){
         return "SELECT * FROM "+table+" WHERE id="+id+";";
     }
-    public static final String updateUserById(String table, Personagem personagem){
+    public static final String updatePersonagemById(String table, Personagem personagem){
         return "UPDATE "+ table + " SET nome=\"" + personagem.nome + "\"," +
                 "email=\"" + personagem.nome + "\"," +
                 "senha=\"" + personagem.profissao + "\" WHERE id=" + personagem.id+";";
     }
 
-    public static final String deleteUserById(String table, int id){
+    public static final String deletePersonagemById(String table, int id){
         return "DELETE FROM "+ table + " WHERE id=" + id+";";
     }
 }
