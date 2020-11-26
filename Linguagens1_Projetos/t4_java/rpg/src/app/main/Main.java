@@ -1,19 +1,19 @@
 package app.main;
 
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
 import app.dao.PersonagensDAO;
 import app.model.Personagem;
-import app.utils.Constants;
+
 
 public class Main {
     private PersonagensDAO personagensDAO;
     private List<Personagem> personagensList;
 
     public Main() {
-        personagensDAO = new PersonagensDAO(Constants.URL_MEU_BANCO);
         personagensList = new ArrayList<>();
     }
 
@@ -23,34 +23,49 @@ public class Main {
         do {
             menu();
             int opt = sc.nextInt();
+            int id;
+            Personagem resultPersonagem;
             switch (opt) {
                 case 1:
                     String nome, raca, profissao;
                     int mana, ataque, ataqueMagico, defesa, defesaMagica, velocidade, destreza, xp, lvl;
                     System.out.println("Informe: ");
+                    System.out.println("Nome: ");
                     nome = sc.next();
+                    System.out.println("Raça: ");
                     raca = sc.next();
+                    System.out.println("Profissão: ");
                     profissao = sc.next();
+                    System.out.println("Mana: ");
                     mana = sc.nextInt();
+                    System.out.println("Ataque: " );
                     ataque = sc.nextInt();
+                    System.out.println("Ataque Magico: ");
                     ataqueMagico = sc.nextInt();
+                    System.out.println("Defesa: ");
                     defesa = sc.nextInt();
+                    System.out.println("Defesa Magica: ");
                     defesaMagica = sc.nextInt();
+                    System.out.println("Velocidade: ");
                     velocidade = sc.nextInt();
+                    System.out.println("Destreza: ");
                     destreza = sc.nextInt();
+                    System.out.println("Experciência: ");
                     xp = sc.nextInt();
+                    System.out.println("Level: ");
                     lvl = sc.nextInt();
 
                     Personagem personagem = new Personagem(nome, raca, profissao, mana, ataque, ataqueMagico, defesa,
                             defesaMagica, velocidade, destreza, xp, lvl);
-                    personagensDAO.insertPersonagem(personagem);
+
+                    PersonagensDAO.getInstance().insertPersonagem(personagem);
                     break;
                 case 2:
                   
                     break;
 
                 case 3:
-                    personagensList = personagensDAO.getAllPersonagens();
+                    personagensList = PersonagensDAO.getInstance().getAllPersonagens();
                     for (Personagem p : personagensList) {
                         System.out.println("ID: " + p.id);
                         System.out.println("Nome: " + p.nome);
@@ -76,6 +91,9 @@ public class Main {
         } while (true);
 
     }
+
+    
+
 
     public void menu() {
         System.out.println("1. Criar personagem");

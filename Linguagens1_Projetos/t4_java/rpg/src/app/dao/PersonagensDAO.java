@@ -13,8 +13,15 @@ import app.utils.Constants;
 
 public class PersonagensDAO {
     private Connection connection;
+    private static PersonagensDAO instance = null;
+    public static PersonagensDAO getInstance(){
+        if(instance == null)
+            instance = new PersonagensDAO(Constants.URL_MEU_BANCO);
+        return instance;
+    }
+    
 
-    public PersonagensDAO(String myConnection) {
+    private PersonagensDAO(String myConnection) {
         try {
             connection = DriverManager.getConnection(myConnection);
             connection.setAutoCommit(false);
@@ -31,15 +38,15 @@ public class PersonagensDAO {
             comandoSQL.setString(2, personagem.nome);
             comandoSQL.setString(3, personagem.raca);
             comandoSQL.setString(4, personagem.profissao);
-            comandoSQL.setNull(5, Types.INTEGER);
-            comandoSQL.setNull(6, Types.INTEGER);
-            comandoSQL.setNull(7, Types.INTEGER);
-            comandoSQL.setNull(8, Types.INTEGER);
-            comandoSQL.setNull(9, Types.INTEGER);
-            comandoSQL.setNull(10, Types.INTEGER);
-            comandoSQL.setNull(11, Types.INTEGER);
-            comandoSQL.setNull(12, Types.INTEGER);
-            comandoSQL.setNull(13, Types.INTEGER);
+            comandoSQL.setInt(5, personagem.mana);
+            comandoSQL.setInt(6, personagem.ataque);
+            comandoSQL.setInt(7, personagem.ataqueMagico);
+            comandoSQL.setInt(8, personagem.defesa);
+            comandoSQL.setInt(9, personagem.defesaMagica);
+            comandoSQL.setInt(10, personagem.velocidade);
+            comandoSQL.setInt(11, personagem.destreza);
+            comandoSQL.setInt(12, personagem.xp);
+            comandoSQL.setInt(13, personagem.lvl);
             comandoSQL.setNull(1, Types.INTEGER);
             comandoSQL.executeUpdate();
             connection.commit();
