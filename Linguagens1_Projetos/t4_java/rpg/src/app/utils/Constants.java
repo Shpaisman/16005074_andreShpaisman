@@ -23,8 +23,18 @@ public class Constants {
     }
     public static final String updatePersonagemById(String table, Personagem personagem){
         return "UPDATE "+ table + " SET nome=\"" + personagem.nome + "\"," +
-                "email=\"" + personagem.nome + "\"," +
-                "senha=\"" + personagem.profissao + "\" WHERE id=" + personagem.id+";";
+                "nome=\"" + personagem.nome + "\"," +
+                "raca=\"" + personagem.raca + "\"," +
+                "profissao=\"" + personagem.profissao + "\"," +     
+                "mana=\"" + personagem.mana + "\"," +
+                "ataque=\"" + personagem.ataque + "\"," +
+                "ataqueMagico=\"" + personagem.ataqueMagico + "\"," +
+                "defesa=\"" + personagem.defesa + "\"," +
+                "defesaMagica=\"" + personagem.defesaMagica + "\"," +
+                "velocidade=\"" + personagem.velocidade + "\"," +
+                "destreza=\"" + personagem.destreza + "\"," +
+                "xp=\"" + personagem.xp + "\"," +
+                "lvl=\"" + personagem.lvl + "\" WHERE id=" + personagem.id+";";
     }
 
     public static final String deletePersonagemById(String table, int id){

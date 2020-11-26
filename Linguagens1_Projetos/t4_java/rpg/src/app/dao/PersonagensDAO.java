@@ -88,6 +88,27 @@ public class PersonagensDAO {
 
     }
 
+    public Personagem getPersonagem(int id){
+        Personagem personagem = null;
+        try {
+            Statement comandoSql = connection.createStatement();
+            ResultSet rs = comandoSql.executeQuery(Constants.selectId(Constants.TABELA_PERSONAGENS, id));
+            while(rs.next()){
+                personagem = new Personagem(rs.getString("nome"), rs.getString("raca"),
+                rs.getString("profissao"), rs.getInt("mana"), rs.getInt("ataque"), rs.getInt("ataqueMagico"),
+                rs.getInt("defesa"), rs.getInt("defesaMagica"), rs.getInt("velocidade"), rs.getInt("destreza"),
+                rs.getInt("xp"), rs.getInt("lvl")
+                );
+                personagem.id = rs.getInt("id");
+            }
+            rs.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+        return personagem;
+    }
+
     public boolean updatePersonagemById(Personagem personagem){
         try {
             Statement comandoSql = connection.createStatement();
@@ -112,5 +133,7 @@ public class PersonagensDAO {
         }
         return true;
     }
+
+    
 
 }
