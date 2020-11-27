@@ -1,12 +1,3 @@
-// class AnimeModel {
-//   final String title;
-//   final String imageUrl;
-//   final String ;
-
-//   AnimeModel({this.title, this.imageUrl, this.score});
-
-// }
-
 class AnimeModel {
   String requestHash;
   bool requestCached;

@@ -1,7 +1,6 @@
 import 'package:anime/modules/anime/anime_controller.dart';
 import 'package:anime/modules/anime/anime_model.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'anime_model.dart';
 
 class AnimePage extends StatefulWidget {
@@ -11,23 +10,29 @@ class AnimePage extends StatefulWidget {
 
 class _AnimePageState extends State<AnimePage> {
   Future<Results> _resultado;
-  AnimeController animeController = new AnimeController();
+  AnimeController animeController;
 
   @override
   void initState() {
     super.initState();
-    _resultado = animeController.fetchAnime();
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        backgroundColor: Colors.blueGrey,
+        resizeToAvoidBottomPadding: false,
         appBar: AppBar(
-          title: Text("Consultar anime"),
+          title: Text("Esse Anime é Bom?"),
         ),
         body: Column(
           children: [
             TextFormField(
+              onFieldSubmitted: (nome) {
+                setState(() {
+                  _resultado = animeController.fetchAnime(nome);
+                });
+              },
               textAlign: TextAlign.left,
               style: TextStyle(fontSize: 25.0),
               decoration: InputDecoration(
@@ -44,26 +49,49 @@ class _AnimePageState extends State<AnimePage> {
                   hintText: 'Digite o nome de um anime',
                   hintStyle: TextStyle(fontSize: 20.0)),
             ),
-            FutureBuilder<Results>(
-              future: _resultado,
-              builder: (context, snapshot) {
-                if (snapshot.hasData) {
-                  return ListTile(
-                    leading: Image.network(snapshot.data.imageUrl),
-                    title: Text(
-                      snapshot.data.title,
-                      style: TextStyle(fontSize: 20),
-                      textAlign: TextAlign.center,
-                      overflow: TextOverflow.fade,
-                    ),
-                    trailing: Text("${snapshot.data.episodes} Episódios"),
-                  );
-                } else if (snapshot.hasError) {
-                  return Text("Erro: ${snapshot.error}");
-                }
-                return CircularProgressIndicator();
-              },
-            )
+            _resultado == null
+                ? Text("")
+                : FutureBuilder<Results>(
+                    future: _resultado,
+                    builder: (context, snapshot) {
+                      if (snapshot.hasData) {
+                        return Column(
+                          children: [
+                            Image.network(snapshot.data.imageUrl),
+                            ListTile(
+                              leading: Text(snapshot.data.rated),
+                              title: Text(
+                                snapshot.data.title,
+                                style: TextStyle(fontSize: 20),
+                                textAlign: TextAlign.center,
+                                overflow: TextOverflow.fade,
+                              ),
+                              trailing:
+                                  Text("${snapshot.data.episodes} Episódios"),
+                            ),
+                            snapshot.data.rated == "R+"
+                                ? Text(
+                                    "ESSE ANIME É BOM",
+                                    style: TextStyle(
+                                        fontSize: 30,
+                                        fontWeight: FontWeight.bold,
+                                        decoration: TextDecoration.underline),
+                                  )
+                                : Text(
+                                    "ESSE ANIME É RUIM",
+                                    style: TextStyle(
+                                        fontSize: 30,
+                                        fontWeight: FontWeight.bold,
+                                        decoration: TextDecoration.underline),
+                                  )
+                          ],
+                        );
+                      } else if (snapshot.hasError) {
+                        return Text("Erro: ${snapshot.error}");
+                      }
+                      return CircularProgressIndicator();
+                    },
+                  )
           ],
         ));
   }

@@ -9,28 +9,28 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          title: Text("Titulo"),
-        ),
         body: ListView(
+      children: [
+        Stack(
           children: [
-            Container(
-              child: Text(
-                "Bem vindo de volta! Okaeri!",
-                style: TextStyle(fontSize: 30),
-              ),
-              alignment: Alignment.bottomCenter,
+            Image.asset('assets/images/okaeri.jpg'),
+            Text(
+              "Okaeri!!!",
+              style: TextStyle(fontSize: 100, color: Colors.black),
             ),
-            Container(
-              child: Image.asset('assets/images/okaeri.jpg'),
-              padding: EdgeInsets.all(70),
-            ),
-            FlatButton(
-                onPressed: () {
-                  Navigator.pushNamed(context, '/anime');
-                },
-                child: Text("ClickMe"))
           ],
-        ));
+        ),
+        FlatButton(
+            color: Colors.yellow,
+            height: 150,
+            onPressed: () {
+              Navigator.pushNamed(context, '/anime');
+            },
+            child: Text(
+              "Vamos julgar seu gosto em anime? Clique aqui!",
+              style: TextStyle(fontSize: 30, height: 1),
+            ))
+      ],
+    ));
   }
 }
