@@ -9,28 +9,33 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: ListView(
-      children: [
-        Stack(
-          children: [
-            Image.asset('assets/images/okaeri.jpg'),
-            Text(
-              "Okaeri!!!",
-              style: TextStyle(fontSize: 100, color: Colors.black),
-            ),
-          ],
+      body: Stack(children: [
+        Opacity(
+          opacity: 0.7,
+          child: Container(
+            height: double.infinity,
+            child: Image.asset('assets/images/okaeri.jpg', fit: BoxFit.fill),
+          ),
         ),
-        FlatButton(
-            color: Colors.yellow,
-            height: 150,
-            onPressed: () {
-              Navigator.pushNamed(context, '/anime');
-            },
-            child: Text(
-              "Vamos julgar seu gosto em anime? Clique aqui!",
-              style: TextStyle(fontSize: 30, height: 1),
-            ))
-      ],
-    ));
+        Text(
+          "Okaeri Senpai",
+          style: TextStyle(fontSize: 60, height: 4),
+        ),
+        Positioned(
+          bottom: 40,
+          left: 5,
+          child: RaisedButton(
+              color: Colors.white70,
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(18),
+                  side: BorderSide(color: Colors.black)),
+              child:
+                  Text("Vamos ver se seu gosto em animes é bom? Clique aqui."),
+              onPressed: () {
+                Navigator.pushNamed(context, '/anime');
+              }),
+        )
+      ]),
+    );
   }
 }

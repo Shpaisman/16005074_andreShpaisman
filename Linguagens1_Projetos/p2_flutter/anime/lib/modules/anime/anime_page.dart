@@ -10,7 +10,8 @@ class AnimePage extends StatefulWidget {
 
 class _AnimePageState extends State<AnimePage> {
   Future<Results> _resultado;
-  AnimeController animeController;
+  AnimeController animeController = new AnimeController();
+  TextEditingController textController;
 
   @override
   void initState() {
@@ -20,79 +21,122 @@ class _AnimePageState extends State<AnimePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: Colors.blueGrey,
         resizeToAvoidBottomPadding: false,
         appBar: AppBar(
-          title: Text("Esse Anime é Bom?"),
+          title: Text(
+            "Escolha sabiamente",
+          ),
+          backgroundColor: Colors.black,
         ),
-        body: Column(
-          children: [
-            TextFormField(
-              onFieldSubmitted: (nome) {
-                setState(() {
-                  _resultado = animeController.fetchAnime(nome);
-                });
-              },
-              textAlign: TextAlign.left,
-              style: TextStyle(fontSize: 25.0),
-              decoration: InputDecoration(
-                  contentPadding:
-                      new EdgeInsets.symmetric(vertical: 30.0, horizontal: 30),
-                  border: InputBorder.none,
-                  prefixIcon: Padding(
-                    padding: EdgeInsets.all(0.0),
-                    child: Icon(
-                      Icons.search,
-                      color: Colors.grey,
-                    ), // icon is 48px widget.
-                  ),
-                  hintText: 'Digite o nome de um anime',
-                  hintStyle: TextStyle(fontSize: 20.0)),
-            ),
-            _resultado == null
-                ? Text("")
-                : FutureBuilder<Results>(
-                    future: _resultado,
-                    builder: (context, snapshot) {
-                      if (snapshot.hasData) {
-                        return Column(
-                          children: [
-                            Image.network(snapshot.data.imageUrl),
-                            ListTile(
-                              leading: Text(snapshot.data.rated),
-                              title: Text(
-                                snapshot.data.title,
-                                style: TextStyle(fontSize: 20),
-                                textAlign: TextAlign.center,
-                                overflow: TextOverflow.fade,
+        body: Container(
+          decoration: BoxDecoration(
+              gradient: LinearGradient(
+                  begin: Alignment.topCenter,
+                  end: Alignment.bottomCenter,
+                  colors: [Colors.white, Colors.deepPurple])), //Highway Star
+          child: Column(
+            children: [
+              TextFormField(
+                onFieldSubmitted: (nome) {
+                  setState(() {
+                    _resultado = animeController.fetchAnime(nome);
+                  });
+                },
+                textAlign: TextAlign.left,
+                style: TextStyle(fontSize: 25.0),
+                decoration: InputDecoration(
+                    contentPadding: new EdgeInsets.symmetric(
+                        vertical: 30.0, horizontal: 30),
+                    border: InputBorder.none,
+                    prefixIcon: Padding(
+                      padding: EdgeInsets.all(0.0),
+                      child: Icon(
+                        Icons.search,
+                        color: Colors.black,
+                      ), // icon is 48px widget.
+                    ),
+                    hintText: 'Digite o nome de um anime',
+                    hintStyle: TextStyle(fontSize: 20.0)),
+              ),
+              _resultado == null
+                  ? Text("")
+                  : FutureBuilder<Results>(
+                      future: _resultado,
+                      builder: (context, snapshot) {
+                        if (snapshot.hasData) {
+                          return Column(
+                            children: [
+                              snapshot.data.rated == "R+" ||
+                                      snapshot.data.rated == "Rx"
+                                  ? Text(
+                                      "ESSE ANIME É BOM",
+                                      style: TextStyle(
+                                          color: Colors.green,
+                                          fontSize: 30,
+                                          fontWeight: FontWeight.bold,
+                                          decoration: TextDecoration.underline),
+                                    )
+                                  : Text(
+                                      "ESSE ANIME É RUIM",
+                                      style: TextStyle(
+                                          color: Colors.red,
+                                          fontSize: 30,
+                                          fontWeight: FontWeight.bold,
+                                          decoration: TextDecoration.underline),
+                                    ),
+                              Image.network(snapshot.data.imageUrl),
+                              Text(snapshot.data.title),
+                              Container(
+                                margin: EdgeInsets.fromLTRB(0, 10, 100, 10),
+                                width: 200,
+                                child: Card(
+                                    shape: RoundedRectangleBorder(
+                                        borderRadius:
+                                            BorderRadius.circular(15)),
+                                    color: Colors.amberAccent,
+                                    elevation: 10,
+                                    child: Column(
+                                      children: [
+                                        ListTile(
+                                          leading: Icon(
+                                            Icons.favorite_rounded,
+                                            color: Colors.red,
+                                            size: 50,
+                                          ),
+                                          title: Text(
+                                            "Score: ",
+                                            style: TextStyle(
+                                                fontSize: 30,
+                                                fontWeight: FontWeight.bold),
+                                          ),
+                                        ),
+                                        Card(
+                                          shape: RoundedRectangleBorder(
+                                              borderRadius:
+                                                  BorderRadius.circular(15)),
+                                          color: snapshot.data.score > 7.6
+                                              ? Colors.green
+                                              : Colors.red,
+                                          child: Text(
+                                            snapshot.data.score
+                                                .toString()
+                                                .replaceAll('.', ','),
+                                            style: TextStyle(fontSize: 35),
+                                          ),
+                                        )
+                                      ],
+                                    )),
                               ),
-                              trailing:
-                                  Text("${snapshot.data.episodes} Episódios"),
-                            ),
-                            snapshot.data.rated == "R+"
-                                ? Text(
-                                    "ESSE ANIME É BOM",
-                                    style: TextStyle(
-                                        fontSize: 30,
-                                        fontWeight: FontWeight.bold,
-                                        decoration: TextDecoration.underline),
-                                  )
-                                : Text(
-                                    "ESSE ANIME É RUIM",
-                                    style: TextStyle(
-                                        fontSize: 30,
-                                        fontWeight: FontWeight.bold,
-                                        decoration: TextDecoration.underline),
-                                  )
-                          ],
-                        );
-                      } else if (snapshot.hasError) {
-                        return Text("Erro: ${snapshot.error}");
-                      }
-                      return CircularProgressIndicator();
-                    },
-                  )
-          ],
+                            ],
+                          );
+                        } else if (snapshot.hasError) {
+                          return Text("Erro: ${snapshot.error}");
+                        }
+                        return CircularProgressIndicator();
+                      },
+                    )
+            ],
+          ),
         ));
   }
 }
