@@ -24,7 +24,7 @@ class _AnimePageState extends State<AnimePage> {
         resizeToAvoidBottomPadding: false,
         appBar: AppBar(
           title: Text(
-            "Escolha sabiamente",
+            "Anime search",
           ),
           backgroundColor: Colors.black,
         ),
