@@ -87,8 +87,7 @@ class _AnimePageState extends State<AnimePage> {
                               Image.network(snapshot.data.imageUrl),
                               Text(snapshot.data.title),
                               Container(
-                                margin: EdgeInsets.fromLTRB(0, 10, 100, 10),
-                                width: 200,
+                                margin: EdgeInsets.all(20),
                                 child: Card(
                                     shape: RoundedRectangleBorder(
                                         borderRadius:
