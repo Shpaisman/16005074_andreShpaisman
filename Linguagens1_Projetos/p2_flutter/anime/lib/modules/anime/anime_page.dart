@@ -84,7 +84,12 @@ class _AnimePageState extends State<AnimePage> {
                                           fontWeight: FontWeight.bold,
                                           decoration: TextDecoration.underline),
                                     ),
-                              Image.network(snapshot.data.imageUrl),
+                              snapshot.data.title == "JoJo no Kimyou na Bouken"
+                                  ? Container(
+                                      height: 360,
+                                      child: Image.asset(
+                                          'assets/images/scatDeSunga.png'))
+                                  : Image.network(snapshot.data.imageUrl),
                               Text(snapshot.data.title),
                               Container(
                                 margin: EdgeInsets.all(20),
